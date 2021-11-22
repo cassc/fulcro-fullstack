@@ -1,0 +1,23 @@
+{:paths ["src/main" "resources"]
+
+ :deps {org.clojure/clojure    {:mvn/version "1.10.1"}
+        com.fulcrologic/fulcro {:mvn/version "3.4.14"}
+        com.wsscode/pathom     {:mvn/version "2.4.0"}
+        http-kit/http-kit      {:mvn/version "2.5.3"}
+        org.clojure/core.async {:mvn/version "1.3.618"}
+        com.taoensso/timbre    {:mvn/version "5.1.2"}
+        ring/ring              {:mvn/version "1.9.4"}}
+
+ :aliases {:uberjar {:replace-deps
+                     {com.github.seancorfield/depstar {:mvn/version "2.0.193"}}
+                     :exec-fn   hf.depstar/uberjar
+                     :exec-args {:jar        "target/fulcro-fullstack.jar"
+                                 :aot        true
+                                 :jvm-opts   ["-Dclojure.compiler.direct-linking=true"]
+                                 :main-class app.server}}
+           :cljs/prod {:main-opts ["-m" "cljs.main" "-co" "prod.cljs.edn" "-c" "app.client"]}
+           :dev     {:extra-paths ["src/dev" "src/test"]
+                     :extra-deps  {org.clojure/clojurescript   {:mvn/version "1.10.742"}
+                                   org.clojure/tools.namespace {:mvn/version "1.1.0"}
+                                   thheller/shadow-cljs        {:mvn/version "2.8.107"}
+                                   binaryage/devtools          {:mvn/version "0.9.10"}}}}}

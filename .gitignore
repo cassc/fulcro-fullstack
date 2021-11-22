@@ -1,0 +1,9 @@
+/.lsp/
+/.cpcache/
+/.shadow-cljs/
+/node_modules/
+/resources/public/js/main
+/.nrepl-port
+/target
+/.idea/
+**/.cache/*
